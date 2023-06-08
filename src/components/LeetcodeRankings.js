@@ -122,7 +122,7 @@ const LeetcodeRankings = ({ darkmode }) => {
     event.preventDefault();
 
     try {
-      const response = await axios.get('https://leaderboard062003-584chu2mo-aditya062003.vercel.app/contest-rankings/', {
+      const response = await axios.get('https://leaderboard062003-80gd06m7e-aditya062003.vercel.app/contest-rankings/', {
         params: {
           contest: contestId,
           usernames: usernames,
