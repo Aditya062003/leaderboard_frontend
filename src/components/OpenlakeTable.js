@@ -39,7 +39,7 @@ export const OpenlakeTable = ({
     const [filteredusers, setFilteredusers] = useState([]);
     const [todisplayusers, setTodisplayusers] = useState([]);
     const getccfriends = async () => {
-      const response = await fetch("http://localhost:8000/api/getolfriends/", {
+      const response = await fetch("https://leaderboard-bjo0afk62-aditya062003.vercel.app/api/getolfriends/", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -56,7 +56,7 @@ export const OpenlakeTable = ({
   
     async function addfriend(e) {
       
-      const response = await fetch("http://localhost:8000/api/olfriends/", {
+      const response = await fetch("https://leaderboard-bjo0afk62-aditya062003.vercel.app/api/olfriends/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -77,7 +77,7 @@ export const OpenlakeTable = ({
     }
     async function dropfriend(e) {
       
-      const response = await fetch("http://localhost:8000/api/dropolfriends/", {
+      const response = await fetch("https://leaderboard-bjo0afk62-aditya062003.vercel.app/api/dropolfriends/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
