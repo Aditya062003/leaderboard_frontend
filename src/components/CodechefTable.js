@@ -39,7 +39,7 @@ export const CodechefTable = ({
   const [filteredusers, setFilteredusers] = useState([]);
   const [todisplayusers, setTodisplayusers] = useState([]);
   const getccfriends = async () => {
-    const response = await fetch("https://leaderboard-u6es8ibj0-aditya062003.vercel.app/api/getccfriends/", {
+    const response = await fetch("https://leaderboard-bjo0afk62-aditya062003.vercel.app/api/getccfriends/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -56,7 +56,7 @@ export const CodechefTable = ({
 
   async function addfriend(e) {
     
-    const response = await fetch("https://leaderboard-u6es8ibj0-aditya062003.vercel.app/api/ccfriends/", {
+    const response = await fetch("https://leaderboard-bjo0afk62-aditya062003.vercel.app/api/ccfriends/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -77,7 +77,7 @@ export const CodechefTable = ({
   }
   async function dropfriend(e) {
     
-    const response = await fetch("https://leaderboard-u6es8ibj0-aditya062003.vercel.app/api/dropccfriends/", {
+    const response = await fetch("https://leaderboard-bjo0afk62-aditya062003.vercel.app/api/dropccfriends/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
