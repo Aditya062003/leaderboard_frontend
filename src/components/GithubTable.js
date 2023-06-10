@@ -41,7 +41,7 @@ export const GithubTable = ({
   const [filteredusers, setFilteredusers] = useState([]);
   const [todisplayusers, setTodisplayusers] = useState([]);
   const getghfriends = async () => {
-    const response = await fetch("http://localhost:8000/api/getghfriends/", {
+    const response = await fetch("https://leaderboard-u6es8ibj0-aditya062003.vercel.app/api/getghfriends/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +58,7 @@ export const GithubTable = ({
 
   async function addfriend(e) {
     
-    const response = await fetch("http://localhost:8000/api/ghfriends/", {
+    const response = await fetch("https://leaderboard-u6es8ibj0-aditya062003.vercel.app/api/ghfriends/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -79,7 +79,7 @@ export const GithubTable = ({
   }
   async function dropfriend(e) {
     
-    const response = await fetch("http://localhost:8000/api/dropghfriends/", {
+    const response = await fetch("https://leaderboard-u6es8ibj0-aditya062003.vercel.app/api/dropghfriends/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
