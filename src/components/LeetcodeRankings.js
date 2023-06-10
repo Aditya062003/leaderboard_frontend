@@ -18,7 +18,7 @@ const LeetcodeRankings = ({ darkmode }) => {
     event.preventDefault();
   
     try {
-      const url = `https://leaderboard-u6es8ibj0-aditya062003.vercel.app/api/leetcodecontestrankings/?contest=${contestId}`;
+      const url = `https://leaderboard-bjo0afk62-aditya062003.vercel.app/api/leetcodecontestrankings/?contest=${contestId}`;
       const response = await fetch(url, {
         method: 'GET',
         headers: {
