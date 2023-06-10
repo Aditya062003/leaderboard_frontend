@@ -40,7 +40,7 @@ export const CodeforcesTable = ({
   const [filteredusers, setFilteredusers] = useState([]);
   const [todisplayusers, setTodisplayusers] = useState([]);
   const getcffriends = async () => {
-    const response = await fetch("http://localhost:8000/api/getcffriends/", {
+    const response = await fetch("https://leaderboard-u6es8ibj0-aditya062003.vercel.app/api/getcffriends/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -56,7 +56,7 @@ export const CodeforcesTable = ({
   };
 
   async function addfriend(e) {
-    const response = await fetch("http://localhost:8000/api/cffriends/", {
+    const response = await fetch("https://leaderboard-u6es8ibj0-aditya062003.vercel.app/api/cffriends/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -74,7 +74,7 @@ export const CodeforcesTable = ({
     }
   }
   async function dropfriend(e) {
-    const response = await fetch("http://localhost:8000/api/dropcffriends/", {
+    const response = await fetch("https://leaderboard-u6es8ibj0-aditya062003.vercel.app/api/dropcffriends/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
