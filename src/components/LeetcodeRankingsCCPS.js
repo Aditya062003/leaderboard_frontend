@@ -117,6 +117,9 @@ const LeetcodeRankingsCCPS = ({ darkmode }) => {
               <MenuItem value="Biweekly Contest 105">
                 Biweekly Contest 105
               </MenuItem>
+              <MenuItem value="Biweekly Contest 106">
+                Biweekly Contest 106
+              </MenuItem>
             </Select>
           </label>
         </form>
