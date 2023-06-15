@@ -52,7 +52,7 @@ const LeetcodeRankingsCCPS = ({ darkmode }) => {
     const fetchRankings = async () => {
       try {
         const response = await axios.get(
-          "https://leaderboard-bjo0afk62-aditya062003.vercel.app/contest-rankings/",
+          "https://leaderboard-ten-delta.vercel.app/contest-rankings/",
           {
             params: {
               contest: contestId,
