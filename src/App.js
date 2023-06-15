@@ -110,7 +110,7 @@ function App() {
     }
   }, []);
   useEffect(() => {
-    fetch("https://leaderboard-bjo0afk62-aditya062003.vercel.app/codeforces/")
+    fetch("https://leaderboard-ten-delta.vercel.app/codeforces/")
       .then((res) => res.json())
       .then((res) => {
         setCodeforcesUsers(res);
@@ -118,21 +118,21 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch("https://leaderboard-bjo0afk62-aditya062003.vercel.app/codechef/")
+    fetch("https://leaderboard-ten-delta.vercel.app/codechef/")
       .then((res) => res.json())
       .then((res) => {
         setCodechefUsers(res);
       });
   }, []);
   useEffect(() => {
-    fetch("https://leaderboard-bjo0afk62-aditya062003.vercel.app/leetcode/")
+    fetch("https://leaderboard-ten-delta.vercel.app/leetcode/")
       .then((res) => res.json())
       .then((res) => {
         setLeetcodeUsers(res);
       });
   }, []);
   useEffect(() => {
-    fetch("https://leaderboard-bjo0afk62-aditya062003.vercel.app/openlake/")
+    fetch("https://leaderboard-ten-delta.vercel.app/openlake/")
       .then((res) => res.json())
       .then((res) => {
         setOpenlakeContributor(res);
@@ -140,7 +140,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch("https://leaderboard-bjo0afk62-aditya062003.vercel.app/github/")
+    fetch("https://leaderboard-ten-delta.vercel.app/github/")
       .then((res) => res.json())
       .then((res) => {
         setGithubUser(res);
