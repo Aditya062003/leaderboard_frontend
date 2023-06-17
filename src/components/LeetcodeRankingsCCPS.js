@@ -48,7 +48,7 @@ const LeetcodeRankingsCCPS = ({ darkmode }) => {
     const fetchRankings = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/contest-rankings/"
+          "https://leaderboard-ten-delta.vercel.app/contest-rankings/"
         );
         const data = response.data;
         
