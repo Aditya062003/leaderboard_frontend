@@ -81,6 +81,9 @@ const LeetcodeGraphs = ({ darkmode }) => {
         // yaxis: {
         //   reversed: true,
         // },
+        tooltip:{
+            fillSeriesColor:true,
+        },
       });
     }
   }, [rankings, darkmode]);
