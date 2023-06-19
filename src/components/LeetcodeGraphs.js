@@ -6,79 +6,9 @@ import Chart from "react-apexcharts";
 const LeetcodeGraphs = ({ darkmode }) => {
   const { username } = useParams();
   const [rankings, setRankings] = useState([]);
-  //   const [chartData, setchartData] = useState({});
-  const [options, setoptions] = useState({});
-  const [series, setseries] = useState([]);
-  const [contestID, setcontestID] = useState([]);
-
-  //   useEffect(() => {
-  //     const fetchRankings = async () => {
-  //       try {
-  //         const response = await axios.get(
-  //           "http://localhost:8000/contest-rankings/"
-  //         );
-  //         const data = response.data;
-
-  //         const contestRankings = data
-  //           .filter((rank) => rank.usernames === username)
-  //           .map((rank) => {
-  //             const variableNames = Object.keys(rank).filter(
-  //               (key) => key !== "usernames"
-  //             );
-  //             setcontestID(variableNames); // Store all the other fields as contest IDs
-  //             return {
-  //               username: rank.usernames,
-  //               ranking: variableNames.map((key) => rank[key]),
-  //             };
-  //           });
-
-  //         setRankings(contestRankings);
-  //         if (rankings.length > 0) {
-  //             const { username, ranking } = rankings[0];
-  //             setseries([
-  //               {
-  //                 name: username,
-  //                 data: ranking,
-  //               },
-  //             ]);
-  //             setoptions({
-  //               chart: {
-  //                 height: 350,
-  //                 type: "line",
-  //                 zoom: {
-  //                   enabled: false,
-  //                 },
-  //               },
-  //               dataLabels: {
-  //                 enabled: false,
-  //               },
-  //               stroke: {
-  //                 curve: "straight",
-  //               },
-  //               title: {
-  //                 text: "Product Trends by Month",
-  //                 align: "left",
-  //               },
-  //               grid: {
-  //                 row: {
-  //                   colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
-  //                   opacity: 0.5,
-  //                 },
-  //               },
-  //               xaxis: {
-  //                 categories: contestID,
-  //               },
-  //             });
-  //           }
-  //         // console.log(rankings); // Verify the updated rankings
-  //         // console.log(contestID); // Verify the contest ID values
-  //       } catch (error) {
-  //         console.log("error", error);
-  //       }
-  //     };
-
-  //     fetchRankings();
-  //   }, []);
+  const [options, setOptions] = useState({});
+  const [series, setSeries] = useState([]);
+  const [contestID, setContestID] = useState([]);
 
   useEffect(() => {
     const fetchRankings = async () => {
@@ -94,7 +24,7 @@ const LeetcodeGraphs = ({ darkmode }) => {
             const variableNames = Object.keys(rank).filter(
               (key) => key !== "usernames"
             );
-            setcontestID(variableNames); // Store all the other fields as contest IDs
+            setContestID(variableNames);
             return {
               username: rank.usernames,
               ranking: variableNames.map((key) => rank[key]),
@@ -112,20 +42,22 @@ const LeetcodeGraphs = ({ darkmode }) => {
 
   useEffect(() => {
     if (rankings.length > 0) {
-        const { username, ranking } = rankings[0];
-        setseries([
-          {
-            name: username,
-            data: ranking,
-          },
-        ]);        
-      setoptions({
+      const { username, ranking } = rankings[0];
+      const reversedRanking = ranking.slice().reverse();
+      setSeries([
+        {
+          name: username,
+          data: ranking,
+        },
+      ]);
+      setOptions({
         chart: {
           height: 350,
           type: "line",
           zoom: {
             enabled: false,
           },
+          ...(darkmode && { background: "#252f3d", foreColor: "#fff" }), // Set background and foreColor for dark mode
         },
         dataLabels: {
           enabled: false,
@@ -139,20 +71,19 @@ const LeetcodeGraphs = ({ darkmode }) => {
         },
         grid: {
           row: {
-            colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+            colors: ["#f3f3f3", "transparent"],
             opacity: 0.5,
           },
         },
         xaxis: {
           categories: contestID,
         },
-        // yaxis:{
-        //     reversed: true,
-        // }
+        // yaxis: {
+        //   reversed: true,
+        // },
       });
     }
-  }, [rankings]);
-
+  }, [rankings, darkmode]);
 
   return (
     <div style={{ marginTop: "100px" }}>
