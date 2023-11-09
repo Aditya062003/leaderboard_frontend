@@ -111,7 +111,7 @@ function App() {
     }
   }, []);
   useEffect(() => {
-    fetch("https://leaderboard-ten-delta.vercel.app/codeforces/")
+    fetch("https://leaderboard-ten-delta.vercel.app/codeforces/" ,{mode:'cors'},)
       .then((res) => res.json())
       .then((res) => {
         setCodeforcesUsers(res);
@@ -119,21 +119,21 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch("https://leaderboard-ten-delta.vercel.app/codechef/")
+    fetch("https://leaderboard-ten-delta.vercel.app/codechef/" ,{mode:'cors'},)
       .then((res) => res.json())
       .then((res) => {
         setCodechefUsers(res);
       });
   }, []);
   useEffect(() => {
-    fetch("https://leaderboard-ten-delta.vercel.app/leetcode/")
+    fetch("https://leaderboard-ten-delta.vercel.app/leetcode/",{mode:'cors'},)
       .then((res) => res.json())
       .then((res) => {
         setLeetcodeUsers(res);
       });
   }, []);
   useEffect(() => {
-    fetch("https://leaderboard-ten-delta.vercel.app/openlake/")
+    fetch("https://leaderboard-ten-delta.vercel.app/openlake/",{mode:'cors'},)
       .then((res) => res.json())
       .then((res) => {
         setOpenlakeContributor(res);
@@ -141,7 +141,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch("https://leaderboard-ten-delta.vercel.app/github/")
+    fetch("https://leaderboard-ten-delta.vercel.app/github/",{mode:'cors'},)
       .then((res) => res.json())
       .then((res) => {
         setGithubUser(res);

@@ -39,7 +39,7 @@ export const CodechefTable = ({
   const [filteredusers, setFilteredusers] = useState([]);
   const [todisplayusers, setTodisplayusers] = useState([]);
   const getccfriends = async () => {
-    const response = await fetch("https://leaderboard-ten-delta.vercel.app/api/getccfriends/", {
+    const response = await fetch("https://leaderboard-ten-delta.vercel.app/api/getccfriends/",{mode:'cors'}, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -56,7 +56,7 @@ export const CodechefTable = ({
 
   async function addfriend(e) {
     
-    const response = await fetch("https://leaderboard-ten-delta.vercel.app/api/ccfriends/", {
+    const response = await fetch("https://leaderboard-ten-delta.vercel.app/api/ccfriends/",{mode:'cors'}, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -77,7 +77,7 @@ export const CodechefTable = ({
   }
   async function dropfriend(e) {
     
-    const response = await fetch("https://leaderboard-ten-delta.vercel.app/api/dropccfriends/", {
+    const response = await fetch("https://leaderboard-ten-delta.vercel.app/api/dropccfriends/", {mode:'cors'},{
       method: "POST",
       headers: {
         "Content-Type": "application/json",

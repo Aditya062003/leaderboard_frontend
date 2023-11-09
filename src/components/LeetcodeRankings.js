@@ -19,7 +19,7 @@ const LeetcodeRankings = ({ darkmode }) => {
   
     try {
       const url = `https://leaderboard-ten-delta.vercel.app/api/leetcodecontestrankings/?contest=${contestId}`;
-      const response = await fetch(url, {
+      const response = await fetch(url, {mode:'cors'},{
         method: 'GET',
         headers: {
           Authorization: `Bearer ${localStorage.getItem('authTokens')}`,

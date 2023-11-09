@@ -14,7 +14,7 @@ const LeetcodeGraphs = ({ darkmode }) => {
     const fetchRankings = async () => {
       try {
         const response = await axios.get(
-          "https://leaderboard-ten-delta.vercel.app/contest-rankings/"
+          "https://leaderboard-ten-delta.vercel.app/contest-rankings/",{mode:'cors'},
         );
         const data = response.data;
 

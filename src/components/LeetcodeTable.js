@@ -40,7 +40,7 @@ export const LeetcodeTable = ({
   const [filteredusers, setFilteredusers] = useState([]);
   const [todisplayusers, setTodisplayusers] = useState([]);
   const getltfriends = async () => {
-    const response = await fetch("https://leaderboard-ten-delta.vercel.app/api/getltfriends/", {
+    const response = await fetch("https://leaderboard-ten-delta.vercel.app/api/getltfriends/",{mode:'cors'}, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -57,7 +57,7 @@ export const LeetcodeTable = ({
 
   async function addfriend(e) {
     
-    const response = await fetch("https://leaderboard-ten-delta.vercel.app/api/ltfriends/", {
+    const response = await fetch("https://leaderboard-ten-delta.vercel.app/api/ltfriends/", {mode:'cors'},{
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -78,7 +78,7 @@ export const LeetcodeTable = ({
   }
   async function dropfriend(e) {
     
-    const response = await fetch("https://leaderboard-ten-delta.vercel.app/api/dropltfriends/", {
+    const response = await fetch("https://leaderboard-ten-delta.vercel.app/api/dropltfriends/" , {mode:'cors'}, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
