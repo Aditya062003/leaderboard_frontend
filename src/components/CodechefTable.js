@@ -1,4 +1,5 @@
 import { makeStyles, withStyles } from "@material-ui/core/styles";
+import axios from "axios";
 import {
   Table,
   TableBody,
@@ -37,6 +38,7 @@ export const CodechefTable = ({
 }) => {
   const [searchfield, setSearchfield] = useState("");
   const [filteredusers, setFilteredusers] = useState([]);
+  console.log(codecheffriends)
   const [todisplayusers, setTodisplayusers] = useState([]);
   const getccfriends = async () => {
     const response = await fetch("https://leaderboard-ten-delta.vercel.app/api/getccfriends/",{mode:'cors'}, {
@@ -55,24 +57,29 @@ export const CodechefTable = ({
   };
 
   async function addfriend(e) {
-    
-    const response = await fetch("https://leaderboard-ten-delta.vercel.app/api/ccfriends/",{mode:'cors'}, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization:
-          "Bearer " + JSON.parse(localStorage.getItem("authTokens")).access,
-      },
-      body: JSON.stringify({
-        ccFriend_uname: e.username,
-      }),
-    });
-    if (response.status !== 200) {
+    try {
+      const response = await axios.post(
+        "https://leaderboard-ten-delta.vercel.app/api/ccfriends/",
+        {
+          ccFriend_uname: e.username,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + JSON.parse(localStorage.getItem("authTokens")).access,
+          },
+        }
+      );
+  
+      if (response.status === 200) {
+        console.log(response.data)
+        setCodecheffriends((current) => [...current, e]);
+      } else {
+        alert("ERROR!!!!");
+      }
+    } catch (error) {
+      console.error("Error adding friend", error);
       alert("ERROR!!!!");
-    }
-    else
-    {
-      setCodecheffriends((current) => [...current, e]);
     }
   }
   async function dropfriend(e) {
@@ -207,17 +214,16 @@ export const CodechefTable = ({
                       <Button
                         variant="contained"
                         style={{backgroundColor:darkmode?"#146ca4":""}}
-                        onClick={() => {
-                          !codecheffriends.some(
-                            (item) => item.username === cfUser.username
-                          )
-                            ? addfriend(cfUser)
-                            : dropfriend(cfUser.username);
-                        }}
+                        // onClick={() => {
+                        //   codecheffriends && !codecheffriends.some(
+                        //     (item) => item.username === cfUser.username
+                        //   )
+                        //     ? addfriend(cfUser)
+                        //     : dropfriend(cfUser.username);
+                        // }}
+                        // onClick={() => addfriend(cfUser)}
                       >
-                        {codecheffriends.some(
-                          (item) => item.username === cfUser.username
-                        )
+                        {false
                           ? "Remove Friend"
                           : "Add Friend"}
                       </Button>

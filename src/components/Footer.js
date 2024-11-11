@@ -23,11 +23,7 @@ const Footer = () => {
   return (
     <div style={{
         textAlign:"center",
-        color:"white",
-        backgroundColor:"black",
-        height:"10vh",
-        display:"block",
-        marginTop:"min(64vh)"
+        bottom:0,
     }}>
        <Copyright sx={{ mt: 5 }} />
     </div>

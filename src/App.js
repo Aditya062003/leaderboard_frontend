@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import axios from "axios";
 import { Grid } from "@material-ui/core";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -17,10 +18,11 @@ import { LeetcodeTable } from "./components/LeetcodeTable";
 import PrivateRoute from "./utils/PrivateRoute";
 import { AuthProvider } from "./Context/AuthContext";
 import GoToTop from "./components/GoToTop";
-import Footer from "./components/Footer"
+import Footer from "./components/Footer";
 import LeetcodeRankings from "./components/LeetcodeRankings";
 import LeetcodeRankingsCCPS from "./components/LeetcodeRankingsCCPS";
 import LeetcodeGraphs from "./components/LeetcodeGraphs";
+
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -38,10 +40,9 @@ const darkTheme = createTheme({
             backgroundColor: "#636363",
             minHeight: 15,
           },
-          "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover":
-            {
-              backgroundColor: "#4F4F4F",
-            },
+          "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover": {
+            backgroundColor: "#4F4F4F",
+          },
           "&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner": {
             backgroundColor: "#686868",
           },
@@ -68,10 +69,9 @@ const lightTheme = createTheme({
             backgroundColor: "#C1C1C1",
             minHeight: 15,
           },
-          "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover":
-            {
-              backgroundColor: "#B5B5B5",
-            },
+          "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover": {
+            backgroundColor: "#B5B5B5",
+          },
           "&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner": {
             backgroundColor: "#C1C1C1",
           },
@@ -80,6 +80,7 @@ const lightTheme = createTheme({
     },
   },
 });
+
 function App() {
   const [codechefUsers, setCodechefUsers] = useState([]);
   const [darkmode, setDarkmode] = useState(false);
@@ -97,12 +98,14 @@ function App() {
   const [ghshowfriends, setGhshowfriends] = useState(false);
   const [openlakefriends, setOpenlakefriends] = useState([]);
   const [olshowfriends, setOlshowfriends] = useState(false);
+
   const toggle = () => {
     setDarkmode(!darkmode);
     const g = localStorage.getItem("dark-mode");
     if (g === "off") localStorage.setItem("dark-mode", "on");
     else localStorage.setItem("dark-mode", "off");
   };
+
   useEffect(() => {
     const dm = localStorage.getItem("dark-mode");
     if (dm != null) {
@@ -110,42 +113,50 @@ function App() {
       else setDarkmode(false);
     }
   }, []);
+
   useEffect(() => {
-    fetch("https://leaderboard-ten-delta.vercel.app/codeforces/" ,{mode:'cors'},)
-      .then((res) => res.json())
+    axios
+      .get("https://leaderboard-ten-delta.vercel.app/codeforces/", { mode: 'cors' })
       .then((res) => {
-        setCodeforcesUsers(res);
-      });
+        setCodeforcesUsers(res.data);
+      })
+      .catch((error) => console.error("Error fetching Codeforces data", error));
   }, []);
 
   useEffect(() => {
-    fetch("https://leaderboard-ten-delta.vercel.app/codechef/" ,{mode:'cors'},)
-      .then((res) => res.json())
+    axios
+      .get("https://leaderboard-ten-delta.vercel.app/codechef/", { mode: 'cors' })
       .then((res) => {
-        setCodechefUsers(res);
-      });
-  }, []);
-  useEffect(() => {
-    fetch("https://leaderboard-ten-delta.vercel.app/leetcode/",{mode:'cors'},)
-      .then((res) => res.json())
-      .then((res) => {
-        setLeetcodeUsers(res);
-      });
-  }, []);
-  useEffect(() => {
-    fetch("https://leaderboard-ten-delta.vercel.app/openlake/",{mode:'cors'},)
-      .then((res) => res.json())
-      .then((res) => {
-        setOpenlakeContributor(res);
-      });
+        setCodechefUsers(res.data);
+      })
+      .catch((error) => console.error("Error fetching Codechef data", error));
   }, []);
 
   useEffect(() => {
-    fetch("https://leaderboard-ten-delta.vercel.app/github/",{mode:'cors'},)
-      .then((res) => res.json())
+    axios
+      .get("https://leaderboard-ten-delta.vercel.app/leetcode/", { mode: 'cors' })
       .then((res) => {
-        setGithubUser(res);
-      });
+        setLeetcodeUsers(res.data);
+      })
+      .catch((error) => console.error("Error fetching Leetcode data", error));
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("https://leaderboard-ten-delta.vercel.app/openlake/", { mode: 'cors' })
+      .then((res) => {
+        setOpenlakeContributor(res.data);
+      })
+      .catch((error) => console.error("Error fetching Openlake data", error));
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("https://leaderboard-ten-delta.vercel.app/github/", { mode: 'cors' })
+      .then((res) => {
+        setGithubUser(res.data);
+      })
+      .catch((error) => console.error("Error fetching Github data", error));
   }, []);
 
   return (
@@ -154,7 +165,7 @@ function App() {
       <Router>
         <AuthProvider>
           <div className="App">
-            <Navbar darkmode={darkmode} toggle={toggle}/>
+            <Navbar darkmode={darkmode} toggle={toggle} />
             <Grid container>
               <Grid item xs={6}>
                 <Switch>
@@ -170,7 +181,6 @@ function App() {
                   <PrivateRoute exact path="/">
                     <HomePage />
                   </PrivateRoute>
-
                   <PrivateRoute exact path="/codeforces">
                     <CodeforcesTable
                       darkmode={darkmode}
@@ -224,31 +234,22 @@ function App() {
                   <PrivateRoute exact path="/profile">
                     <Profile1 darkmode={darkmode} />
                   </PrivateRoute>
-
                   <PrivateRoute exact path="/leetcoderankings">
                     <LeetcodeRankings darkmode={darkmode} />
                   </PrivateRoute>
-                  <PrivateRoute  path="/leetcoderanking/:username">
+                  <PrivateRoute path="/leetcoderanking/:username">
                     <LeetcodeGraphs darkmode={darkmode} />
                   </PrivateRoute>
-
-                  {/* <PrivateRoute exact path="/leetcoderankingsccps">
-                    <LeetcodeRankingsCCPS darkmode={darkmode} />
-                  </PrivateRoute> */}
-                  
-                  <Route exact path="/*">
-                    <HomePage />
-                  </Route>
-               
                 </Switch>
               </Grid>
             </Grid>
-            <GoToTop/>
-            <Footer/>
+            <GoToTop />
+            <Footer />
           </div>
         </AuthProvider>
       </Router>
     </ThemeProvider>
   );
 }
+
 export default App;

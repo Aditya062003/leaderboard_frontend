@@ -207,17 +207,15 @@ export const GithubTable = ({
                       <Button
                         variant="contained"
                         style={{backgroundColor:darkmode?"#146ca4":""}}
-                        onClick={() => {
-                          !githubfriends.some(
-                            (item) => item.username === glUser.username
-                          )
-                            ? addfriend(glUser)
-                            : dropfriend(glUser.username);
-                        }}
+                        // onClick={() => {
+                        //   !githubfriends.some(
+                        //     (item) => item.username === glUser.username
+                        //   )
+                        //     ? addfriend(glUser)
+                        //     : dropfriend(glUser.username);
+                        // }}
                       >
-                        {githubfriends.some(
-                          (item) => item.username === glUser.username
-                        )
+                        {false
                           ? "Remove Friend"
                           : "Add Friend"}
                       </Button>

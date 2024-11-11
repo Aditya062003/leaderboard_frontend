@@ -198,17 +198,15 @@ export const OpenlakeTable = ({
                       <Button
                         variant="contained"
                         style={{backgroundColor:darkmode?"#146ca4":""}}
-                        onClick={() => {
-                          !codecheffriends.some(
-                            (item) => item.username === olUser.username
-                          )
-                            ? addfriend(olUser)
-                            : dropfriend(olUser.username);
-                        }}
+                        // onClick={() => {
+                        //   !codecheffriends.some(
+                        //     (item) => item.username === olUser.username
+                        //   )
+                        //     ? addfriend(olUser)
+                        //     : dropfriend(olUser.username);
+                        // }}
                       >
-                        {codecheffriends.some(
-                          (item) => item.username === olUser.username
-                        )
+                        {false
                           ? "Remove Friend"
                           : "Add Friend"}
                       </Button>

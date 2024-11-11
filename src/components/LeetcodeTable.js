@@ -210,17 +210,15 @@ export const LeetcodeTable = ({
                       <Button
                         variant="contained"
                         style={{backgroundColor:darkmode?"#146ca4":""}}
-                        onClick={() => {
-                          !leetcodefriends.some(
-                            (item) => item.username === cfUser.username
-                          )
-                            ? addfriend(cfUser)
-                            : dropfriend(cfUser.username);
-                        }}
+                        // onClick={() => {
+                        //   !leetcodefriends.some(
+                        //     (item) => item.username === cfUser.username
+                        //   )
+                        //     ? addfriend(cfUser)
+                        //     : dropfriend(cfUser.username);
+                        // }}
                       >
-                        {leetcodefriends.some(
-                          (item) => item.username === cfUser.username
-                        )
+                        {false
                           ? "Remove Friend"
                           : "Add Friend"}
                       </Button>

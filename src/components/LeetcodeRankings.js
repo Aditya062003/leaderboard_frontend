@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import axios from "axios";
 
 const LeetcodeRankings = ({ darkmode }) => {
   const [contestId, setContestId] = useState('');
@@ -16,27 +16,28 @@ const LeetcodeRankings = ({ darkmode }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+    console.log('here')
+
     try {
       const url = `https://leaderboard-ten-delta.vercel.app/api/leetcodecontestrankings/?contest=${contestId}`;
-      const response = await fetch(url, {mode:'cors'},{
-        method: 'GET',
+      const response = await axios.get(url, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('authTokens')}`,
+          Authorization: `Bearer ${localStorage.getItem("authTokens")}`,
         },
       });
-  
-      if (response.ok) {
-        const data = await response.json();
+
+      if (response.status === 200) {
+        const data = response.data;
         setRankings(data);
-        console.log(data)
+        console.log(data);
       } else {
-        throw new Error('Request failed');
+        throw new Error("Request failed");
       }
     } catch (error) {
       console.log(error);
     }
   };
+
   
   return (
     <div>
